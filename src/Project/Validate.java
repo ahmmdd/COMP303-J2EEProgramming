@@ -1,26 +1,33 @@
 package Project;
 
-import java.sql.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-public class Validate {
-	public static boolean checkUser(String email, String pass) {
-		boolean st = false;
-		try {
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-			// loading drivers for mysql
-			Class.forName("com.mysql.jdbc.Driver");
+public class Validate extends HttpServlet {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			// creating connection with the database
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/subcomp", "root", "3415");
-			PreparedStatement ps = con.prepareStatement("select * from register where user=? and pass=?");
-			ps.setString(1, email);
-			ps.setString(2, pass);
-			ResultSet rs = ps.executeQuery();
-			st = rs.next();
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		String n = request.getParameter("USERNAME");
+		String p = request.getParameter("PASSWORD");
+
+		if (Login.validate(n, p)) {
+			RequestDispatcher rd = request.getRequestDispatcher("loginServlet2");
+			rd.forward(request, response);
+		} else {
+			out.print("Sorry username or password error");
+			RequestDispatcher rd = request.getRequestDispatcher("index.html");
+			rd.include(request, response);
 		}
-		return st;
+
+		out.close();
 	}
+
 }

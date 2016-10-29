@@ -1,42 +1,42 @@
 package Project;
 
 import java.io.*;
-import javax.servlet.*;
+import java.sql.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.sql.*;
 
-@WebServlet("/register")
+@WebServlet("/Register")
 public class Register extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		this.doPost(request, response);
+	}// End doGet
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		String email = request.getParameter("USERNAME");
-		String pass = request.getParameter("PASSWORD");
+		String n = request.getParameter("USERNAME");
+		//System.out.println(n);
+		String p = request.getParameter("PASSWORD");
+		//System.out.println(p);
+
 		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/SUBCOMP", "root", "3415");
 
-			// loading drivers for mysql
-			Class.forName("com.mysql.jdbc.Driver");
+			PreparedStatement ps = con.prepareStatement("insert into user values(?,?)");
 
-			// creating connection with the database
-			Connection con = DriverManager.getConnection("jdbc:mysql:/ /localhost:3306/subcomp.user", "root", "3415");
+			ps.setString(1, n);
+			ps.setString(2, p);
 
-			PreparedStatement ps = con.prepareStatement("insert into Student values(?,?)");
-
-			ps.setString(1, email);
-			ps.setString(2, pass);
 			int i = ps.executeUpdate();
+			if (i > 0) { out.print("You are successfully registered..."); }
 
-			if (i > 0) {
-				out.println("You are sucessfully registered");
-			}
-
-		} catch (Exception se) {
-			se.printStackTrace();
-		}
-
-	}
-}
+		} catch (Exception e) { System.out.println(e); }// End try/catch block
+		out.close();
+	}// End doPost
+}//End class

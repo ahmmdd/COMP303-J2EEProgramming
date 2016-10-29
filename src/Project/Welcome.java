@@ -1,18 +1,25 @@
 package Project;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/Welcome")
+
 public class Welcome extends HttpServlet {
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("Welcome user");
-      }  
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		String n=request.getParameter("USERNAME");
+		out.print("Welcome "+ n);
+		
+		out.close();
+	}
+
 }

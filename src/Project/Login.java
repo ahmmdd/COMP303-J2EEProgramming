@@ -1,29 +1,26 @@
 package Project;
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import java.sql.*;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+public class Login {
 
-		String email = request.getParameter("email");
-		String pass = request.getParameter("pass");
+	public static boolean validate(String name, String pass) {
+		boolean status = false;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/subcomp", "root", "3415");
 
-		if (Validate.checkUser(email, pass)) {
-			RequestDispatcher rs = request.getRequestDispatcher("Welcome");
-			rs.forward(request, response);
-		} else {
-			out.println("Username or Password incorrect");
-			RequestDispatcher rs = request.getRequestDispatcher("index.html");
-			rs.include(request, response);
+			PreparedStatement ps = con.prepareStatement("select * from user where USERNAME=? and PASSWORD=?");
+			ps.setString(1, name);
+			ps.setString(2, pass);
+
+			ResultSet rs = ps.executeQuery();
+			status = rs.next();
+
+		} catch (Exception e) {
+			System.out.println(e);
 		}
+		return status;
 	}
 }

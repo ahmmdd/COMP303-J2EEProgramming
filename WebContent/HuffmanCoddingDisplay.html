@@ -1,6 +1,7 @@
 <html>
 <head>
-<title>HOME PAGE</title>
+<title></title>
+</head>
 <style>
 .inline-form {
 	display: inline-block;
@@ -10,6 +11,14 @@
 	width: 125px;
 	display: inline-block;
 	text-align: left;
+}
+
+textarea {
+	margin-top: 25px;
+	width: 40%;
+	float: left;
+	margin-left: 4%;
+	margin-right: 4%;
 }
 
 table, th, td {
@@ -38,18 +47,14 @@ legend {
 	padding: 3px 2px;
 }
 </style>
-</head>
 <body>
 	<div style="text-align: center; margin-top: 25px;">
 		<span>
-		<!-- ACTION is the servlet mapping -->
-		
-			<form action="upload" method="GET" class="inline-form" >
-				Select the file you would like to run: 
-				<input type="file" name="uploadFile" /> 
-				<!-- 
-				<input type="submit" name="submitFile" value="Submit File" />
-			 	-->
+
+ 			<form method="POST" action="upload" class="inline-form" enctype="multipart/form-data" >
+ 				Select the file you would like to run: 
+ 				<input type="file" name="file" id="file" />
+				<input type="submit" value="Submit" name="upload" id="upload" />
 			</form>
 			<form action="encrypt" method="GET" class="inline-form">
 				<input type="submit" name="encrypt" value="Encrypt" />
@@ -63,12 +68,11 @@ legend {
 		</span>
 	</div>
 	<div style="width: 50%; float: left; margin-top: 50px;">
-		<!--put the table inside of here-->
 		<table>
 			<tr>
 				<th>Letter</th>
 				<th>Ascii Code</th>
-				<th>Occurence</th>
+				<th>Occurenece</th>
 				<th>Frequency</th>
 				<th>Huffman Code</th>
 
@@ -95,30 +99,19 @@ legend {
 				<br>
 			</fieldset>
 		</div>
-		<!--Login-->
-		<div style="text-align: center; margin-top: 25px;">
-			<form action="loginServlet1" name="login" action="post">
-				<label class="compression-label">Name: </label>
-				<input type="text" name="USERNAME" value="Name" />
-				<br><br> 
-				<label class="compression-label">Password: </label>
-				<input type="password" name="PASSWORD" value="password" />
-				<br><br> 
-				<input type="submit" value="login" />
-			</form>
-		</div>
-		<!--Register-->
-		<div style="text-align: center; margin-top: 25px;">
-			<form action="Register" name="login" action="post">
-				<label class="compression-label">Name: </label>
-				<input type="text" name="USERNAME" value="Name" /><br>
-				<br> 
-				<label class="compression-label">Password: </label>
-				<input type="password" name="PASSWORD" value="password" /><br>
-				<br> 
-				<input type="submit" value="New user, Please Register" />
-			</form>
-		</div>
+
 	</div>
+	<div style="float: clear"></div>
+	<div>
+		<textarea name="ciphered-text" rows="30">Lorem ipsum dolor sit amet, graeci repudiandae et nec. Munere consulatu an duo, sed ex atomorum aliquando. Habemus volutpat vix ex, qui ipsum reprehendunt ad, cu solet necessitatibus conclusionemque eos. Ei iuvaret consequat mea, mei graeco nonumes ei.
+
+Eos recusabo salutatus philosophia no, vim no amet altera. Eum eu quaerendum intellegebat, vim ei equidem nonumes, eum odio ullum no. Vis an natum iuvaret assueverit, apeirian imperdiet in his, tacimates patrioque sit ad. Eu sit ridens eirmod eligendi.</textarea>
+	</div>
+	<div>
+		<textarea name="ciphered-text" rows="30">Lorem ipsum dolor sit amet, graeci repudiandae et nec. Munere consulatu an duo, sed ex atomorum aliquando. Habemus volutpat vix ex, qui ipsum reprehendunt ad, cu solet necessitatibus conclusionemque eos. Ei iuvaret consequat mea, mei graeco nonumes ei.
+
+Eos recusabo salutatus philosophia no, vim no amet altera. Eum eu quaerendum intellegebat, vim ei equidem nonumes, eum odio ullum no. Vis an natum iuvaret assueverit, apeirian imperdiet in his, tacimates patrioque sit ad. Eu sit ridens eirmod eligendi.</textarea>
+	</div>
+
 </body>
 </html>

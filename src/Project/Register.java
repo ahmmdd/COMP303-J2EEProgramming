@@ -2,6 +2,8 @@ package Project;
 
 import java.io.*;
 import java.sql.*;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -19,6 +21,8 @@ public class Register extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
+		ServletContext sc = getServletContext();
+		
 		String n = request.getParameter("USERNAME");
 		//System.out.println(n);
 		String p = request.getParameter("PASSWORD");
@@ -34,7 +38,11 @@ public class Register extends HttpServlet {
 			ps.setString(2, p);
 
 			int i = ps.executeUpdate();
-			if (i > 0) { out.print("You are successfully registered..."); }
+			if (i > 0) { 
+				out.print("You are successfully registered...");
+				sc.getRequestDispatcher("/HuffmanCoddingDisplay.html").forward(request, response);
+				
+			}
 
 		} catch (Exception e) { System.out.println(e); }// End try/catch block
 		out.close();

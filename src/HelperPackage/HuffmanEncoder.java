@@ -48,7 +48,9 @@ public class HuffmanEncoder {
 		br.close();
 		writer.close();
 		System.out.println("Cipher Size: "+cipherSize);
-		
+		for(Alphabet abc: reference ){
+			System.out.println(abc.getLetter()+abc.getAscii()+abc.getFrequency()+abc.getOccurrence());
+		}
 		
 	}
 }

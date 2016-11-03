@@ -1,124 +1,123 @@
 <html>
-<head>
-<title>HOME PAGE</title>
-<style>
-.inline-form {
-	display: inline-block;
-}
-
-.compression-label {
-	width: 125px;
-	display: inline-block;
-	text-align: left;
-}
-
-table, th, td {
-	border: 1px solid black;
-}
-
-th {
-	background-color: #ef8429;
-	font-size: 18px;
-	font-family: Arial, Helvetica, sans-serif;
-	width: 200px !important;
-}
-
-td {
-	font-size: 18px;
-	font-family: Arial, Helvetica, sans-serif;
-	width: 200px !important;
-	text-align: center;
-}
-
-legend {
-	font-weight: bold;
-	color: black;
-	background-color: #eeeeee;
-	border: 1px solid #999999;
-	padding: 3px 2px;
-}
-</style>
-</head>
-<body>
-	<div style="text-align: center; margin-top: 25px;">
-		<span>
-		<!-- ACTION is the servlet mapping -->
+	<head>
+		<title>Substitution Compression Algorithm</title>
+		<!-- CSS Style for HTML Page -->
+		<style>
+			.inline-form {
+				display: inline-block;
+			}
+	
+			.compression-label {
+				width: 125px;
+				display: inline-block;
+				text-align: left;
+			}
 		
-			<form action="upload" method="GET" class="inline-form" >
-				Select the file you would like to run: 
-				<input type="file" name="uploadFile" /> 
-				<!-- 
-				<input type="submit" name="submitFile" value="Submit File" />
-			 	-->
-			</form>
-			<form action="encrypt" method="GET" class="inline-form">
-				<input type="submit" name="encrypt" value="Encrypt" />
-			</form>
-			<form action="decrypt" method="GET" class="inline-form">
-				<input type="submit" name="decrypt" value="Decrypt" />
-			</form>
-			<form action="exit" method="GET" class="inline-form">
-				<input type="submit" name="exit" value="Exit" />
-			</form>
-		</span>
-	</div>
-	<div style="width: 50%; float: left; margin-top: 50px;">
-		<!--put the table inside of here-->
-		<table>
-			<tr>
-				<th>Letter</th>
-				<th>Ascii Code</th>
-				<th>Occurence</th>
-				<th>Frequency</th>
-				<th>Huffman Code</th>
-
-			</tr>
-		</table>
-	</div>
-	<div style="width: 40%; float: left;">
-		<div
-			style="margin-right: auto; margin-left: auto; width: 35%; margin-top: 50px;">
-			<form action=""></form>
-			<input type="submit" name="displayArray" value="Display Arrays">
-		</div>
-		<!--compression ratio fieldset-->
-		<div>
-			<fieldset>
-				<legend>Compression Ratio</legend>
-				<label class="compression-label">Ciphered Text:</label> <input
-					type="text" name="cipheredText" value="Ciphered Text" /><br>
-				<br> <label class="compression-label">Size Clear Text:</label>
-				<input type="text" name="sizeClearText" value="sizeClearText" /><br>
-				<br> <label class="compression-label">Compression
-					Ratio:</label> <input type="text" name="compressionRatio"
-					value="compressionRatio" /><br>
-				<br>
-			</fieldset>
-		</div>
-		<!--Login-->
+			table, th, td {
+				border: 1px solid black;
+			}
+	
+			th {
+				background-color: #ef8429;
+				font-size: 18px;
+				font-family: Arial, Helvetica, sans-serif;
+				width: 200px !important;
+			}
+	
+			td {
+				font-size: 18px;
+				font-family: Arial, Helvetica, sans-serif;
+				width: 200px !important;
+				text-align: center;
+			}
+	
+			legend {
+				font-weight: bold;
+				color: black;
+				background-color: #eeeeee;
+				border: 1px solid #999999;
+				padding: 3px 2px;
+			}
+		</style>
+	</head>
+	<body>
 		<div style="text-align: center; margin-top: 25px;">
-			<form action="login" name="login" action="post">
-				<label class="compression-label">Name: </label>
-				<input type="text" name="USERNAME" value="Name" />
-				<br><br> 
-				<label class="compression-label">Password: </label>
-				<input type="password" name="PASSWORD" value="password" />
-				<br><br> 
-				<input type="submit" value="login" />
-			</form>
+			<span>
+				<!-- ACTION is the servlet mapping -->
+				<form action="upload" method="GET" class="inline-form" >
+					Select the file you would like to run: 
+					<input type="file" name="uploadFile" /> 
+					<input type="submit" name="submitFile" value="Encrypt" />
+				</form>
+				<form action="decrypt" method="GET" class="inline-form">
+					<input type="submit" name="decrypt" value="Decrypt" />
+				</form>
+				<form action="exit" method="GET" class="inline-form">
+					<input type="submit" name="exit" value="Exit" />
+				</form>
+			</span>
 		</div>
-		<!--Register-->
-		<div style="text-align: center; margin-top: 25px;">
-			<form action="register" name="login" action="post">
-				<label class="compression-label">Name: </label>
-				<input type="text" name="USERNAME" value="Name" /><br>
-				<br> 
-				<label class="compression-label">Password: </label>
-				<input type="password" name="PASSWORD" value="password" /><br>
-				<br> 
-				<input type="submit" value="New user, Please Register" />
-			</form>
+		<div style="width: 50%; float: left; margin-top: 50px;">
+			<!--put the table inside of here-->
+			<table>
+				<tr>
+					<th>Letter</th>
+					<th>Ascii Code</th>
+					<th>Occurence</th>
+					<th>Frequency</th>
+					<th>Huffman Code</th>
+	
+				</tr>
+			</table>
 		</div>
-	</div>
-</body>
+		<div style="width: 40%; float: left;">
+			<div
+				style="margin-right: auto; margin-left: auto; width: 35%; margin-top: 50px;">
+				<form action=""></form>
+				<input type="submit" name="displayArray" value="Display Arrays">
+			</div>
+			<!--compression ratio fieldset-->
+			<div>
+				<fieldset>
+					<legend>Compression Ratio</legend>
+					<label class="compression-label">Ciphered Text:</label> <input
+						type="text" name="cipheredText" value="Ciphered Text" /><br>
+					<br> <label class="compression-label">Size Clear Text:</label>
+					<input type="text" name="sizeClearText" value="sizeClearText" /><br>
+					<br> <label class="compression-label">Compression
+						Ratio:</label> <input type="text" name="compressionRatio"
+						value="compressionRatio" /><br>
+					<br>
+				</fieldset>
+			</div>
+			<!--Login-->
+			<div style="text-align: center; margin-top: 25px;">
+				<form action="login" name="login" action="post">
+					<label class="compression-label">Name: </label>
+					<input type="text" name="USERNAME" value="Name" />
+					<br>
+					<br> 
+					<label class="compression-label">Password: </label>
+					<input type="password" name="PASSWORD" value="password" />
+					<br>
+					<br> 
+					<input type="submit" value="login" />
+				</form>
+			</div>
+			<!--Register-->
+			<div style="text-align: center; margin-top: 25px;">
+				<form action="register" name="register" action="post">
+					<label class="compression-label">Name: </label>
+					<input type="text" name="USERNAME" value="Name" />
+					<br>
+					<br> 
+					<label class="compression-label">Password: </label>
+					<input type="password" name="PASSWORD" value="password" />
+					<br>
+					<br> 
+					<input type="submit" value="New user, Please Register" />
+				</form>
+			</div>
+		</div>
+	</body>
 </html>
